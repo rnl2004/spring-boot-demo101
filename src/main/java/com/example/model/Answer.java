@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "answers")
@@ -25,7 +26,7 @@ public class Answer extends AuditModel {
     @JoinColumn(name = "question_id", updatable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Question question;
+    private Set<Question> question;
 
     public Long getId() {
         return id;
@@ -43,11 +44,11 @@ public class Answer extends AuditModel {
         this.text = text;
     }
 
-    public Question getQuestion() {
+    public Set<Question> getQuestion() {
         return question;
     }
 
-    public void setQuestion(Question question) {
+    public void setQuestion(Set<Question> question) {
         this.question = question;
     }
 }

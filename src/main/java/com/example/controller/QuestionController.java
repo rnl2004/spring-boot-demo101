@@ -2,14 +2,10 @@ package com.example.controller;
 
 import com.example.model.Question;
 import com.example.repository.QuestionRepository;
-import org.aspectj.lang.annotation.RequiredTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,8 +20,9 @@ public class QuestionController {
         return questionRepository.findAll(pageable);
     }
 
-    @PostMapping("/questions")
+    @PostMapping(path = "/questions")
     public Question createQuestion(@Valid @RequestBody Question question) {
+        System.out.println(question.getDescription());
         return questionRepository.save(question);
     }
 }
